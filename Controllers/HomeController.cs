@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TP4_Ahorcado.Models;
+using TP4.Models;
 
-namespace TP4_Ahorcado.Controllers;
+namespace TP4.Controllers;
 
 public class HomeController : Controller
 {
@@ -18,18 +18,22 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Partida(string palabra, List<char> aciertos, List<char> errores, int intentos, string guess)
+    
+    public IActionResult Partida(char guess)
     {
-        ViewBag.aciertos = aciertos;
-        ViewBag.errores = errores;
-        ViewBag.intentos = intentos;
-        ViewBag.guess = guess;
-        // ViewBag.hidden;
-
-        foreach (char letra in palabra)
+        Juego.InicializarPalabra();
+        Juego.intentos++;
+        List<int> indexAciertos = new List<int>();
+        bool guessCorrecto = false;
+        for (int i = 0; i < Juego.palabra.Length; i++)
         {
-            if(letra == guess)
+            if(Juego.palabra[i] == guess){
+                indexAciertos.Add(i);
+                guessCorrecto = true;
+            }
         }
+        if(guessCorrecto) Juego.aciertos.Add(guess);
+        else Juego.errores.Add(guess);
         return Partida();
     }
 
