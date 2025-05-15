@@ -7,10 +7,16 @@ static class Juego
     public static List<char> errores;
     public static string palabra { get; private set; }
     private static List<string> palabras;
+    public static List<char> render;
     public static void InicializarPalabra(){
         // palabras = new List<string> {"Palabra"};
         // Random random = new Random();
         // palabra =  palabras[random.Next(0, palabras.Count - 1)];
-        palabra = "Palabra";
+        palabra = "palabra";
+        foreach (char letra in palabra)
+        {
+            render.Add('_');
+        }
+        intentos = 0;
     }
 }

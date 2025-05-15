@@ -18,28 +18,75 @@ public class HomeController : Controller
         return View();
     }
 
-    
-    public IActionResult Partida(char guess)
+    public IActionResult GuessLetra(char guess)
     {
-        Juego.InicializarPalabra();
-        Juego.intentos++;
-        List<int> indexAciertos = new List<int>();
-        bool guessCorrecto = false;
-        for (int i = 0; i < Juego.palabra.Length; i++)
-        {
-            if(Juego.palabra[i] == guess){
-                indexAciertos.Add(i);
-                guessCorrecto = true;
+        if(!Juego.aciertos.Contains(guess) && !Juego.errores.Contains(guess)){
+            guess = char.ToLower(guess);
+            Juego.intentos++;
+            ViewBag.intentos = Juego.intentos;
+
+            List<int> indexAciertos = new List<int>();
+            bool guessCorrecto = false;
+            for (int i = 0; i < Juego.palabra.Length; i++)
+            {
+                if (Juego.palabra[i] == guess)
+                {
+                    indexAciertos.Add(i);
+                    guessCorrecto = true;
+                }
             }
+            if (guessCorrecto)
+            {
+                Juego.aciertos.Add(guess);
+                foreach (int index in indexAciertos)
+                {
+                    Juego.render[index] = guess;
+                }
+            }
+            else Juego.errores.Add(guess);
+
+            int j = 0;
+            do
+            {
+                j++;
+            } while (j < Juego.palabra.Length && Juego.palabra[j] == Juego.render[j]);
+            if (j >= Juego.palabra.Length)
+            {
+                ViewBag.resultado = true;
+                return View("Resultado");
+            }
+            else
+            {
+                ViewBag.aciertos = Juego.aciertos;
+                ViewBag.errores = Juego.errores;
+                ViewBag.render = Juego.render;
+                return View("Partida");
+            }
+        }else{
+            ViewBag.mensaje = "Ya intentaste con esa letra";
+            ViewBag.aciertos = Juego.aciertos;
+            ViewBag.errores = Juego.errores;
+            ViewBag.render = Juego.render;
+            return View("Partida");
         }
-        if(guessCorrecto) Juego.aciertos.Add(guess);
-        else Juego.errores.Add(guess);
-        return Partida();
+    }
+    public IActionResult GuessPalabra(string guessPalabra)
+    {
+        Juego.intentos++;
+        bool guessCorrecto = guessPalabra.ToLower() == Juego.palabra;
+        ViewBag.intentos = Juego.intentos;
+        ViewBag.palabra = Juego.palabra;
+        ViewBag.resultado = guessCorrecto;
+        return View("Resultado");
     }
 
-    public IActionResult Resultado(bool res)
-        {
-            ViewBag.resultado = res;
-            return Resultado();
-        }
+    public IActionResult EmpezarPartida()
+    {
+        Juego.InicializarPalabra();
+        ViewBag.intentos = Juego.intentos;
+        ViewBag.aciertos = Juego.aciertos;
+        ViewBag.errores = Juego.errores;
+        ViewBag.render = Juego.render;
+        return View("Partida");
+    }
 }
