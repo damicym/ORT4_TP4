@@ -13,6 +13,9 @@ static class Juego
         // Random random = new Random();
         // palabra =  palabras[random.Next(0, palabras.Count - 1)];
         palabra = "palabra";
+        render = new List<char>();
+        aciertos = new List<char>();
+        errores = new List<char>();
         foreach (char letra in palabra)
         {
             render.Add('_');
