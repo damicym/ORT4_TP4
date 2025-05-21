@@ -24,7 +24,7 @@ public class HomeController : Controller
             guess = char.ToLower(guess);
             Juego.intentos++;
             ViewBag.intentos = Juego.intentos;
-
+            ViewBag.mensaje = null;
             List<int> indexAciertos = new List<int>();
             bool guessCorrecto = false;
             for (int i = 0; i < Juego.palabra.Length; i++)
@@ -33,8 +33,10 @@ public class HomeController : Controller
                 {
                     indexAciertos.Add(i);
                     guessCorrecto = true;
+                    
                 }
             }
+                        
             if (guessCorrecto)
             {
                 Juego.aciertos.Add(guess);

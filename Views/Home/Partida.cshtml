@@ -7,7 +7,7 @@
     }
 </h1>
 
-<h3>Intentos fallidos:
+<h3>Letras fallidas:
 @foreach (char letra in ViewBag.errores)
     {
         @($"{letra} ")
@@ -17,12 +17,13 @@
 
 <form action='@Url.Action("GuessLetra", "Home")' method="POST">
     Nueva Letra 
-    <input type="text" name="letra" required>
+    <input autocomplete="off" type="text" maxlength="1" name="guess" required>
     <input type="submit" value="Arriesgar Letra">
+    @if(ViewBag.mensaje != null) <h3 class="error">@ViewBag.mensaje</h3>
 </form> 
 
 <form action='@Url.Action("GuessPalabra", "Home")' method="POST">
     Palabra a Arriesgar
-    <input type="text" name="palabra" required>
+    <input autocomplete="off" type="text" maxlength="render.Lenght" name="guessPalabra" required>
     <input type="submit" value="Arriesgar Palabra">
 </form>
