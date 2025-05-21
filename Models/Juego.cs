@@ -9,7 +9,7 @@ static class Juego
     private static List<string> palabras;
     public static List<char> render;
     public static void InicializarPalabra(){
-        palabras = new List<string> {"Palabra", "Estanca", "Informatica", "Labo", "Debug", "Milanesa", "Turbina", "Carnicero", "Jaz", "Motherboard", "Canelones", "Aura"};
+        palabras = new List<string> {"palabra", "estanca", "informatica", "labo", "debug", "milanesa", "turbina", "carnicero", "jaz", "motherboard", "canelones", "aura"};
         Random random = new Random();
         palabra =  palabras[random.Next(0, palabras.Count - 1)];
         // palabra = "palabra";
