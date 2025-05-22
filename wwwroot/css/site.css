@@ -13,6 +13,7 @@ html {
 body {
   margin: 10px;
   padding: 10px;
+  background-color:#FCF7F8;
 }
 
 footer {
@@ -25,9 +26,11 @@ footer {
 .error{
   color: rgb(138, 0, 0);
 }
+
 a{
   color:#275DAD;
 }
+
 input, form{
   font-family: "Slackey", sans-serif;
   font-weight: bold;
@@ -37,6 +40,7 @@ input, form{
   text-align: center;
   font-size: 2.5rem;
 }
+
 p{
   font-family: Arial, Helvetica, sans-serif;
   width: 50%;
@@ -45,6 +49,33 @@ p{
   text-align: center;
   font-size: 1.2rem;
 }
+.divLetrasFallidas h3{
+  text-decoration: underline;
+  margin: 0px;
+}
+.divLetrasFallidas h4{
+  margin: 0px;
+}
+.divLetrasFallidas{
+  margin-bottom: 1%;
+  background-color: #E1E1ED;
+  width: 20%;
+  border-radius: 7px;
+  padding: 0.5%;
+}
+.textoRosa{
+  color:#EE85B5;
+}
+.center{
+  display: flex; 
+  justify-content: center;
+}
+img{
+  height: 500px;
+  border: 2px solid #000022;
+  border-radius: 7px;
+}
+
 button{
   font-family: Arial, Helvetica, sans-serif;
   color:#FCF7F8;
@@ -57,11 +88,9 @@ button{
   width: 12%;
   transition: 0.3s;
   font-size: 1rem;
+  margin: 1%;
 }
-img{
-  height: 500px;
-  border-radius: 7px;
-}
+
 button:hover{
   background-color: #EE85B5;
   border: 2px solid #EE85B5;
@@ -77,4 +106,12 @@ button:hover{
   color:#000022; 
   border-radius: 10px;
   cursor: pointer;
+}
+
+form{
+  margin-bottom: 1%;
+}
+
+span{
+  color:#EE85B5;
 }

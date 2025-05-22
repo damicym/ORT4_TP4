@@ -17,7 +17,7 @@ public class HomeController : Controller
     }
     public IActionResult GuessLetra(char guess)
     {
-        const int MAX_INTENTOS = 5;
+        const int MAX_INTENTOS = 6;
         guess = char.ToLower(guess);
         ViewBag.intentos = Juego.intentos;
         if(!Juego.aciertos.Contains(guess) && !Juego.errores.Contains(guess)){
@@ -25,11 +25,6 @@ public class HomeController : Controller
             ViewBag.intentos = Juego.intentos;
             List<int> indexAciertos = new List<int>();
             bool guessCorrecto = false;
-            if(Juego.errores.Count >= MAX_INTENTOS){
-                ViewBag.mensaje = $"Parece que {Juego.intentos} intentos no fueron suficientes";
-                ViewBag.resultado = guessCorrecto;
-                return View("Resultado");
-            }
             ViewBag.mensaje = null;
             for (int i = 0; i < Juego.palabra.Length; i++)
             {
@@ -48,7 +43,15 @@ public class HomeController : Controller
                     Juego.render[index] = guess;
                 }
             }
-            else Juego.errores.Add(guess);
+            else {
+                Juego.errores.Add(guess);
+                if(Juego.errores.Count >= MAX_INTENTOS){
+                    ViewBag.mensaje = $"Parece que {Juego.intentos} intentos no fueron suficientes";
+                    ViewBag.resultado = guessCorrecto;
+                    ViewBag.palabra = Juego.palabra;
+                    return View("Resultado");
+                }
+            }
             int j = -1;
             do
             {

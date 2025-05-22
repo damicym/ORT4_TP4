@@ -12,7 +12,6 @@ static class Juego
         palabras = new List<string> {"palabra", "estanca", "informatica", "labo", "debug", "milanesa", "turbina", "carnicero", "jaz", "motherboard", "canelones", "aura"};
         Random random = new Random();
         palabra =  palabras[random.Next(0, palabras.Count - 1)];
-        // palabra = "palabra";
         render = new List<char>();
         aciertos = new List<char>();
         errores = new List<char>();
