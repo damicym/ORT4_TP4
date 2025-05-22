@@ -25,8 +25,8 @@ public class HomeController : Controller
             ViewBag.intentos = Juego.intentos;
             List<int> indexAciertos = new List<int>();
             bool guessCorrecto = false;
-            if(Juego.intentos >= MAX_INTENTOS){
-                ViewBag.mensaje = "Te quedaste sin intentos";
+            if(Juego.errores.Count >= MAX_INTENTOS){
+                ViewBag.mensaje = $"Parece que {Juego.intentos} intentos no fueron suficientes";
                 ViewBag.resultado = guessCorrecto;
                 return View("Resultado");
             }
@@ -81,6 +81,7 @@ public class HomeController : Controller
         ViewBag.intentos = Juego.intentos;
         ViewBag.palabra = Juego.palabra;
         ViewBag.resultado = guessCorrecto;
+        if (!guessCorrecto) ViewBag.mensaje = "Ayy casi!";
         return View("Resultado");
     }
     public IActionResult EmpezarPartida()

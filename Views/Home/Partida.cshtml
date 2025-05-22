@@ -2,8 +2,9 @@
 
 @{
     int imagenIndex = ViewBag.errores != null ? Math.Min(ViewBag.errores.Count, 5) : 0;
+    string rutaImagen = $"/images/{imagenIndex}.png";
 }
-<img src="/images/(@imagenIndex).png" alt="foto chaboncito">
+<img src="@rutaImagen" alt="foto chaboncito">
 <h1 class="palabra">
     @foreach (char letra in ViewBag.render)
     {
