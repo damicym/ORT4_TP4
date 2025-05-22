@@ -1,11 +1,11 @@
 <a href = '@Url.Action("Index", "Home")'> <svg  xmlns="http://www.w3.org/2000/svg"  width="45"  height="45"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg></a>
-
+<br>
 @{
     int imagenIndex = ViewBag.errores != null ? Math.Min(ViewBag.errores.Count, 5) : 0;
     string rutaImagen = $"/images/{imagenIndex}.png";
 }
 <img src="@rutaImagen" alt="foto chaboncito">
-<h1 class="palabra">
+<h1>
     @foreach (char letra in ViewBag.render)
     {
         @($"{letra} ")
@@ -21,14 +21,14 @@
 <h3>Intentos: @ViewBag.intentos</h3>
 
 <form action='@Url.Action("GuessLetra", "Home")' method="POST">
-    Nueva Letra 
-    <input autocomplete="off" type="text" maxlength="1" name="guess" required>
-    <input type="submit" value="Arriesgar Letra">
+    Arriesgá una letra 
+    <input autocomplete="off" type="text" maxlength="1" name="guess" required autofocus>
+    <input class="boton" type="submit" value="Arriesgar Letra">
     @if(ViewBag.mensaje != null) {<h3 class="error">@ViewBag.mensaje</h3>}
 </form> 
 
 <form action='@Url.Action("GuessPalabra", "Home")' method="POST">
-    Palabra a Arriesgar
-    <input autocomplete="off" type="text" maxlength="render.Lenght" name="guessPalabra" required>
-    <input type="submit" value="Arriesgar Palabra">
+    Arriesgá una palabra
+    <input autocomplete="off" type="text" maxlength="@ViewBag.render.Count" name="guessPalabra" required>
+    <input class="boton" type="submit" value="Arriesgar Palabra">
 </form>

@@ -17,7 +17,7 @@ public class HomeController : Controller
     }
     public IActionResult GuessLetra(char guess)
     {
-        const int MAX_INTENTOS = 6;
+        const int MAX_INTENTOS = 5;
         guess = char.ToLower(guess);
         ViewBag.intentos = Juego.intentos;
         if(!Juego.aciertos.Contains(guess) && !Juego.errores.Contains(guess)){
